@@ -39,9 +39,15 @@ public class HelicopterView extends javax.swing.JFrame implements MainModel{
         clickCheckBox();
         sendControlPanelMsg();
         sendToCp();
-        
+        setLogo();
     }
 
+    public void setLogo(){
+        ImageIcon image = new ImageIcon("src\\main\\java\\logo\\army logo.jpg");
+        image.setDescription("IDK");
+        setIconImage(image.getImage());
+    }
+    
     
     public void clickCheckBox(){
     jCheckBox1.addActionListener((ActionEvent evt)->{

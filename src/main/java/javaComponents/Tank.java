@@ -3,6 +3,8 @@ package javaComponents;
 import Controll.*;
 import controllerPanel.*;
 import java.awt.event.*;
+
+import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
 import modulePackage.*;
 
@@ -31,8 +33,15 @@ public class Tank extends javax.swing.JFrame implements MainModel{
         clickCheckBox();
         sendControlPanelMsg();
         sendToCp();
+        setLogo();
     }
 
+    public void setLogo(){
+        ImageIcon image = new ImageIcon("src\\main\\java\\logo\\army logo.jpg");
+        image.setDescription("IDK");
+        setIconImage(image.getImage());
+    }
+        
     public void sendControlPanelMsg(){
         jTextArea1.setText(controlPanel.message());
     }
@@ -220,7 +229,7 @@ public class Tank extends javax.swing.JFrame implements MainModel{
         jButton4.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
               
-                controlPanel.msgFromHelicopter( jTextField2.getText());
+                controlPanel.msgFromTank( jTextField2.getText());
             }
         });
     }

@@ -3,6 +3,9 @@ import Controll.Controll;
 import controllerPanel.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+
 import modulePackage.*;
 //import controllerPanel.SafetySystemC;
 /*
@@ -30,8 +33,16 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
         setVisible(true);
         clickCheckBox();
         sendToCp();
+        setLogo();
     }
 
+
+    public void setLogo(){
+        ImageIcon image = new ImageIcon("src\\main\\java\\logo\\army logo.jpg");
+        image.setDescription("IDK");
+        setIconImage(image.getImage());
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.

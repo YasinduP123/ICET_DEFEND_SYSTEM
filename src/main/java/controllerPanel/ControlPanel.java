@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.event.*;
 import javaComponents.*;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
+
 import modulePackage.*;
 
 /*
@@ -34,9 +36,14 @@ public class ControlPanel extends javax.swing.JFrame{
         sendAreaClear(controll);
         sendControlPanel(controll);
         changeBtnOthersVisible(controll);
+        setLogo();
         
     }
-    
+    public void setLogo(){
+        ImageIcon image = new ImageIcon("src\\main\\java\\logo\\army logo.jpg");
+        image.setDescription("IDK");
+        setIconImage(image.getImage());
+    }
     
     public void sendAreaClear(Controll _controll){
         jCheckBox1.addActionListener(new ActionListener(){
