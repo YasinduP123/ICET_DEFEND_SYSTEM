@@ -77,26 +77,29 @@ public class HelicopterView extends javax.swing.JFrame implements MainModel{
         });
     }
     
- @Override
-    public void sendControllPanelVale() {
-        if(controlPanel.sendSliderValue()>=80){
+    @Override
+    public void sendControllPanelVale(int value) {
+        if(value>=80){
             jButton1.setEnabled(true);
         }else{
             jButton1.setEnabled(false);
         }
 
-        if(controlPanel.sendSliderValue()>=60){
+        if(value>=60){
             jButton2.setEnabled(true);
         }else{
             jButton2.setEnabled(false);
         }
 
-        if(controlPanel.sendSliderValue()>=40){
+        if(value>=40){
             jButton3.setEnabled(true);
         }else{
             jButton3.setEnabled(false);
         }
+
     }
+    
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -352,6 +355,7 @@ public class HelicopterView extends javax.swing.JFrame implements MainModel{
         }else{
             jButton3.setEnabled(false);
         }
+        
     }//GEN-LAST:event_jSlider2StateChanged
 
     @Override

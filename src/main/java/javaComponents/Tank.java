@@ -261,33 +261,33 @@ public class Tank extends javax.swing.JFrame implements MainModel{
         jLabel1.setText("Area Not Cleared");
     }
     
- @Override
-    public void sendControllPanelVale() {
-        if(controlPanel.sendSliderValue()>=80){
+    @Override
+    public void sendControllPanelVale(int value) {
+        if(value>=80){
             jButton1.setEnabled(true);
         }else{
             jButton1.setEnabled(false);
         }
 
-        if(controlPanel.sendSliderValue()>=60){
+        if(value>=60){
             jButton2.setEnabled(true);
         }else{
             jButton2.setEnabled(false);
         }
 
-        if(controlPanel.sendSliderValue()>=40){
+        if(value>=40){
             jButton3.setEnabled(true);
         }else{
             jButton3.setEnabled(false);
         }
-        
-        if(controlPanel.sendSliderValue()>=20){
+               
+        if(value>=20){
             jButton5.setEnabled(true);
         }else{
             jButton5.setEnabled(false);
         }
+       
     }
-
     
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         // TODO add your handling code here:
@@ -377,6 +377,7 @@ public class Tank extends javax.swing.JFrame implements MainModel{
     public void start(int signal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
 
    

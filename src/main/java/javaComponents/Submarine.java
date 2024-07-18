@@ -238,18 +238,6 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-        
-          if(jCheckBox1.isSelected()){
-            jButton1.setEnabled(true);
-            jButton2.setEnabled(true);
-            jButton3.setEnabled(true);
-            jButton5.setEnabled(true);
-          }else{
-            jButton1.setEnabled(false);
-            jButton2.setEnabled(false);
-            jButton3.setEnabled(false);
-            jButton5.setEnabled(false);
-          }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -278,30 +266,31 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
     }
     
     @Override
-    public void sendControllPanelVale() {
-        if(controlPanel.sendSliderValue()>=80){
+    public void sendControllPanelVale(int value) {
+        if(value>=80){
             jButton1.setEnabled(true);
         }else{
             jButton1.setEnabled(false);
         }
 
-        if(controlPanel.sendSliderValue()>=60){
+        if(value>=60){
             jButton2.setEnabled(true);
         }else{
             jButton2.setEnabled(false);
         }
 
-        if(controlPanel.sendSliderValue()>=40){
+        if(value>=40){
             jButton3.setEnabled(true);
         }else{
             jButton3.setEnabled(false);
         }
-        
-        if(controlPanel.sendSliderValue()>=20){
+           
+        if(value>=20){
             jButton5.setEnabled(true);
         }else{
             jButton5.setEnabled(false);
         }
+       
     }
 
     
@@ -384,8 +373,6 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
     public void start(int signal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-
 
 
 

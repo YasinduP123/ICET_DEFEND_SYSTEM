@@ -34,7 +34,7 @@ import javaComponents.*;
                 m1.areaClear();
             }
         }
-  
+    
     public void sendAreaNotCleared(){
             for(MainModel m1 : addList){
                 m1.areaNotClear();
@@ -47,9 +47,9 @@ import javaComponents.*;
         }
     }
     
-    public void getCpSlider(){
+    public void getCpSlider(int value){
             for(MainModel m1: addList){
-            m1.sendControllPanelVale();
+            m1.sendControllPanelVale(value);
         }
     }
     

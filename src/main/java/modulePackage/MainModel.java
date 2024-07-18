@@ -13,5 +13,5 @@ public interface MainModel {
     void areaClear();
     void areaNotClear();
     void sendControlPanelMsg();
-    void sendControllPanelVale();
+    void sendControllPanelVale(int value);
 }

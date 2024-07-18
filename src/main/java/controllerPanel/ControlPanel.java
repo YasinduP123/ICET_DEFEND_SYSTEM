@@ -37,7 +37,7 @@ public class ControlPanel extends javax.swing.JFrame{
         
     }
     
-
+    
     public void sendAreaClear(Controll _controll){
         jCheckBox1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -76,14 +76,16 @@ public class ControlPanel extends javax.swing.JFrame{
     }
     
     public void changeBtnOthersVisible(Controll controll){
-        addChangeListener(new ChangeListener(){
+       jSlider2.addChangeListener(new ChangeListener(){
             public void stateChanged(ChangeEvent evt){
-		controll.getCpSlider();		
+		controll.getCpSlider(sendSliderValue());
+                
              }
 	});
     }
     
     public int sendSliderValue(){
+        
         return jSlider2.getValue();
     }
     
@@ -257,9 +259,10 @@ public class ControlPanel extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
-        addChangeListener(new ChangeListener(){
+        jSlider2.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent evt){
-				int position=jSlider2.getValue();			}
+				int position=jSlider2.getValue();			
+            }
 	});
     }//GEN-LAST:event_jSlider2StateChanged
 
@@ -268,9 +271,7 @@ public class ControlPanel extends javax.swing.JFrame{
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        
-        
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
