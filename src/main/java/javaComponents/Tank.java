@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import modulePackage.*;
 
 /*
@@ -34,6 +35,9 @@ public class Tank extends javax.swing.JFrame implements MainModel{
         sendControlPanelMsg();
         sendToCp();
         setLogo();
+        amoCountToCp();
+        soldierCountToCp();
+        fuelAmountToCp();
     }
 
     public void setLogo(){
@@ -61,11 +65,11 @@ public class Tank extends javax.swing.JFrame implements MainModel{
         jTextArea1 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        soldierCount = new javax.swing.JSpinner();
+        ammoCount = new javax.swing.JSpinner();
         jCheckBox1 = new javax.swing.JCheckBox();
         jTextField2 = new javax.swing.JTextField();
-        jSlider1 = new javax.swing.JSlider();
+        fuelAmount = new javax.swing.JSlider();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -102,9 +106,9 @@ public class Tank extends javax.swing.JFrame implements MainModel{
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Soldier Count");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
+        soldierCount.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
+        ammoCount.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBox1.setText("Position");
@@ -114,15 +118,15 @@ public class Tank extends javax.swing.JFrame implements MainModel{
             }
         });
 
-        jSlider1.setMajorTickSpacing(20);
-        jSlider1.setMinorTickSpacing(5);
-        jSlider1.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider1.setPaintLabels(true);
-        jSlider1.setPaintTicks(true);
-        jSlider1.setEnabled(false);
-        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+        fuelAmount.setMajorTickSpacing(20);
+        fuelAmount.setMinorTickSpacing(5);
+        fuelAmount.setOrientation(javax.swing.JSlider.VERTICAL);
+        fuelAmount.setPaintLabels(true);
+        fuelAmount.setPaintTicks(true);
+        fuelAmount.setEnabled(false);
+        fuelAmount.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSlider1StateChanged(evt);
+                fuelAmountStateChanged(evt);
             }
         });
 
@@ -173,10 +177,10 @@ public class Tank extends javax.swing.JFrame implements MainModel{
                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(34, 34, 34)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                            .addComponent(soldierCount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ammoCount, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addGap(18, 18, 18)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fuelAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -184,15 +188,15 @@ public class Tank extends javax.swing.JFrame implements MainModel{
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fuelAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(soldierCount, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jSpinner2))
+                                    .addComponent(ammoCount))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,6 +229,38 @@ public class Tank extends javax.swing.JFrame implements MainModel{
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+        public void amoCountToCp(){
+        ammoCount.addChangeListener(new ChangeListener() {      
+            public void stateChanged(ChangeEvent e) {
+                int value = (Integer) ammoCount.getValue();
+                controlPanel.getAmmoCountHelicopter(value);
+            }
+        });
+    }
+
+    public void soldierCountToCp(){
+        soldierCount.addChangeListener(new ChangeListener() {      
+            public void stateChanged(ChangeEvent e) {
+                int value = (Integer) soldierCount.getValue();
+                controlPanel.getSoldierCountHelicopter(value);
+            }
+        });
+    }
+    
+    
+    
+    public void fuelAmountToCp(){
+        fuelAmount.addChangeListener(new ChangeListener() {      
+            public void stateChanged(ChangeEvent e) {
+               int value = fuelAmount.getValue();
+               controlPanel.getFuelCountHelicopter(value);
+            }
+        });
+    }
+    
+
+    
+    
     public void sendToCp(){
         jButton4.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -242,9 +278,9 @@ public class Tank extends javax.swing.JFrame implements MainModel{
          // TODO add your handling code here:
           if(jCheckBox1.isSelected())
           {
-              jSlider1.setEnabled(true);
+              fuelAmount.setEnabled(true);
           }else{
-              jSlider1.setEnabled(false);
+              fuelAmount.setEnabled(false);
           }
           
             
@@ -298,33 +334,33 @@ public class Tank extends javax.swing.JFrame implements MainModel{
        
     }
     
-    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+    private void fuelAmountStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fuelAmountStateChanged
         // TODO add your handling code here:
-        if(jSlider1.getValue()>=80){
+        if(fuelAmount.getValue()>=80){
             jButton1.setEnabled(true);
         }else{
             jButton1.setEnabled(false);
         }
         
-        if(jSlider1.getValue()>=60){
+        if(fuelAmount.getValue()>=60){
             jButton2.setEnabled(true);
         }else{
             jButton2.setEnabled(false);
         }
         
-        if(jSlider1.getValue()>=40){
+        if(fuelAmount.getValue()>=40){
             jButton3.setEnabled(true);
         }else{
             jButton3.setEnabled(false);
         }
         
-        if(jSlider1.getValue()>=20){
+        if(fuelAmount.getValue()>=20){
             jButton5.setEnabled(true);
         }else{
             jButton5.setEnabled(false);
         }
         
-    }//GEN-LAST:event_jSlider1StateChanged
+    }//GEN-LAST:event_fuelAmountStateChanged
 
     
     
@@ -364,6 +400,8 @@ public class Tank extends javax.swing.JFrame implements MainModel{
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner ammoCount;
+    private javax.swing.JSlider fuelAmount;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -374,12 +412,10 @@ public class Tank extends javax.swing.JFrame implements MainModel{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JSpinner soldierCount;
     // End of variables declaration//GEN-END:variables
 
     @Override

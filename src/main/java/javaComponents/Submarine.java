@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import modulePackage.*;
 //import controllerPanel.SafetySystemC;
@@ -34,6 +36,9 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
         clickCheckBox();
         sendToCp();
         setLogo();
+        amoCountToCp();
+        soldierCountToCp();
+        fuelAmountToCp();
     }
 
 
@@ -43,6 +48,38 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
         setIconImage(image.getImage());
     }
     
+    
+    public void amoCountToCp(){
+        ammoCount.addChangeListener(new ChangeListener() {      
+            public void stateChanged(ChangeEvent e) {
+                int value = (Integer) ammoCount.getValue();
+                controlPanel.getAmmoCountHelicopter(value);
+            }
+        });
+    }
+
+    public void soldierCountToCp(){
+        soldierCount.addChangeListener(new ChangeListener() {      
+            public void stateChanged(ChangeEvent e) {
+                int value = (Integer) soldierCount.getValue();
+                controlPanel.getSoldierCountHelicopter(value);
+            }
+        });
+    }
+    
+    
+    
+    public void fuelAmountToCp(){
+        fuelAmount.addChangeListener(new ChangeListener() {      
+            public void stateChanged(ChangeEvent e) {
+               int value = fuelAmount.getValue();
+               controlPanel.getFuelCountHelicopter(value);
+            }
+        });
+    }
+    
+
+   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,14 +94,14 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner1 = new javax.swing.JSpinner();
+        ammoCount = new javax.swing.JSpinner();
+        soldierCount = new javax.swing.JSpinner();
         jSlider1 = new javax.swing.JSlider();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextField2 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jSlider2 = new javax.swing.JSlider();
+        fuelAmount = new javax.swing.JSlider();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -92,9 +129,9 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
             }
         });
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
+        ammoCount.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
+        soldierCount.setModel(new javax.swing.SpinnerNumberModel(5, 0, 10, 1));
 
         jSlider1.setMajorTickSpacing(20);
         jSlider1.setMinorTickSpacing(5);
@@ -121,11 +158,11 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
             }
         });
 
-        jSlider2.setMajorTickSpacing(20);
-        jSlider2.setMinorTickSpacing(5);
-        jSlider2.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider2.setPaintLabels(true);
-        jSlider2.setPaintTicks(true);
+        fuelAmount.setMajorTickSpacing(20);
+        fuelAmount.setMinorTickSpacing(5);
+        fuelAmount.setOrientation(javax.swing.JSlider.VERTICAL);
+        fuelAmount.setPaintLabels(true);
+        fuelAmount.setPaintTicks(true);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Energy");
@@ -186,11 +223,11 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(soldierCount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ammoCount, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fuelAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,9 +244,9 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(soldierCount, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jSpinner2))
+                                    .addComponent(ammoCount))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -241,7 +278,7 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(fuelAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -360,6 +397,8 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner ammoCount;
+    private javax.swing.JSlider fuelAmount;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -373,11 +412,9 @@ public class Submarine extends javax.swing.JFrame implements MainModel{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JSpinner soldierCount;
     // End of variables declaration//GEN-END:variables
 
     @Override
